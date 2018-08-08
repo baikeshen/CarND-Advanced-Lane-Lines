@@ -25,11 +25,13 @@ You're reading it!
 
 #### 1. Briefly, state how you computed the camera matrix and distortion coefficients. Provide an example of a distortion corrected calibration image.
 
-The camera calibration code could be found on the [01-Camera Calibration notebook](Advance_Lane_Find.ipynb). Using `cv2.findChessboardCorners`, the corners points are stored in an array `imgpoints` for each calibration image where the chessboard could be found. The object points will always be the same as the known coordinates of the chessboard with zero as 'z' coordinate because the chessboard is flat. The object points are stored in an array called `objpoints`. I then used the output objpoints and imgpoints to compute the camera calibration and distortion coefficients using the `cv2.calibrateCamera` function. I applied this distortion correction to the test image using the `cv2.undistort` function and obtained this result:
+The camera calibration code could be found on the first code shell [Advance_Lane_Find notebook](Advance_Lane_Find.ipynb). Using `cv2.findChessboardCorners`, the corners points are stored in an array `imgpoints` for each calibration image where the chessboard could be found. The object points will always be the same as the known coordinates of the chessboard with zero as 'z' coordinate because the chessboard is flat. The object points are stored in an array called `objpoints`. I then used the output objpoints and imgpoints to compute the camera calibration and distortion coefficients using the `cv2.calibrateCamera` function.
 
-![Camera calibration](images/camera_calibration.png)
+The image below depicts the rsults of applying `cv2.undistort`, using the calibration and distortion coefficients, to one of the chessboar images:
 
-The camera calibration and distortion coefficients are stored using `pickle` to be used on the main [notebook](Advance%20Lane%20Lines.ipynb)
+![Camera calibration](misc/Camera_Calibration.jpeg)
+
+The camera calibration and distortion coefficients are stored on file [Camera calibration coefficients.p](camera_calibrate_coefficients.p) using `pickle` to be used on the main [notebook](Advance_Lane_Find.ipynb)
 
 ### Pipeline (single images)
 
