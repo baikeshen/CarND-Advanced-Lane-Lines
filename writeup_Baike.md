@@ -43,15 +43,16 @@ The following image shows the result of applying the camera calibration to one o
 
 ![distortion-corrected imgae](./misc/dashcam_undist.JPG)
 
-As seen from images, the effect of [undistort] is subtle, but can be perceived from the difference in shape of the hood of the car at the bottom coeners of the image.
+As seen from images, the effect of `cv2.undistort` is subtle, but can be perceived from the difference in shape of the hood of the car at the bottom coeners of the image.
 
 #### 2. Describe how (and identify where in your code) you used color transforms, gradients or other methods to create a thresholded binary image. Provide an example of a binary image result.
 
-The code used to experiment with color, gradients, and thresholds could be found on the [02-Color Transform and Gradients Threshold notebook](02-Color%20Transform%20and%20Gradients%20Threshold.ipynb).
+The code used to experiment with color, gradients, and thresholds could be found on the [Advance_Lane_Find notebook](Advance_Lane_Find.ipynb).
 
-A color transformation to HLS was done `In [6]` and the S channel was selected because it shows more contracts on the lane lines as shown in the next figure:
+I explore several combinations of sobel gradient thresholds and color channel thresholds in mutiple coloe spaces. Below is the demonstration of applying different thresholds and combination of sobel, direction, and mutiple color spaces for the same image: 
 
-![S Channel](images/schannel.png)
+![Thresholds imgae1](./misc/Threshold_Image_1.JPG)
+![Thresholds imgae1](./misc/Threshold_Image_2.JPG)
 
 After the color transformation had been done, it was time for gradients. The following gradients were calculated:
 
