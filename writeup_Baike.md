@@ -35,13 +35,15 @@ The camera calibration and distortion coefficients are stored on file [Camera ca
 
 ### Pipeline (single images)
 
-The code used to implement these functionality could be found at [Advanced Lane Lines notebook](Advance%20Lane%20Lines.ipynb).
+
 
 #### 1. Provide an example of a distortion-corrected image.
-The camera calibration calculation was done on the [01-Camera Calibration notebook](01-Camera%20Calibration.ipynb). The result is load with `pickle` on `In[2]`.
+
 The following image shows the result of applying the camera calibration to one of the test images:
 
-![Image distortion correction](images/undist.png)
+![distortion-corrected imgae](./misc/dashcam_undist.JPG)
+
+As seen from images, the effect of [undistort] is subtle, but can be perceived from the difference in shape of the hood of the car at the bottom coeners of the image.
 
 #### 2. Describe how (and identify where in your code) you used color transforms, gradients or other methods to create a thresholded binary image. Provide an example of a binary image result.
 
