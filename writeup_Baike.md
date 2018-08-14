@@ -67,7 +67,7 @@ The full combination of these gradients leads to a 'noisy' image as shown in bel
 
 ![Stack_Binarized imgae](./misc/Original_Binarized_Stacked_Img.JPG)
 
-On the [Advance_Lane_Find notebook](Advance_Lane_Find.ipynb), all the code could be found from the cell just below `Step 2： Use color transforms, gradients, etc, to create a thresholded binary image`
+On the [Advance_Lane_Find notebook](Advance_Lane_Find.ipynb), all the code could be found from the cell [4] just below `Step 2： Use color transforms, gradients, etc, to create a thresholded binary image`
 
 #### 3. Describe how (and identify where in your code) you performed a perspective transform and provided an example of a transformed image.
 
