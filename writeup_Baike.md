@@ -71,30 +71,28 @@ On the [Advance_Lane_Find notebook](Advance_Lane_Find.ipynb), all the code could
 
 #### 3. Describe how (and identify where in your code) you performed a perspective transform and provided an example of a transformed image.
 
-The perspective transformation code could be found on [03-Perspective transformation notebook](03-Perspective%20transformation.ipynb). The image used were the one with straight lane lines:
+The code for my perspective transform is titled as` Step 3: Apply a perspective transform to rectify binary image ` in the Jupyter notebook.  The ` bird_eye_view ` function takes as inputs an image (`img`), as well as source (`src`) and destination (`dst`) points.  I chose to hardcode the source and destination points in the following manner:
 
-![Straignt lane lines](images/straightlines.png)
+```
+offset = 250
+corners = np.float32([[190,720],[600,447],[685,447],[1125,720]])
+src = corners
 
-Four points where selected on the first image as the source of the perspective transformation. Those points are highlighted on the following image (`In [4]`):
+dst = np.float32([[corners[0][0] + offset, corners[0][1]],
+                      [corners[0][0] + offset, 0],
+                      [corners[3][0] - offset, 0],
+                      [corners[3][0] - offset, corners[3][1]]])   
 
-![Transformation points](images/transformationpoints.png)
+```
+I had considered programmatically determining source and destination points, but I felt that I would get better results carefully selecting points using one of the `straight_lines` test images for reference and assuming that the camera position will remain constant and that the road in the videos will remain relatively flat. The image below demonstrates the results of the perspective transform: 
 
-The destination points for the transformation where to get a clear picture of the street:
+ Using `cv2.getPerspectiveTransform`, a transformation matrix was calculated, and an inverse transformation matrix was also calculated to map the points back to the original space . Four points where selected on the first image as the source of the perspective transformation. Those points are highlighted on the following image, after transformation, the result of the transformation on a test image is the following as well:
 
-|Source|Destination|
-|-----:|----------:|
-|(585, 455)|(200,0)|
-|(705, 455)|(maxX - 200, 0)|
-|(1130, 720)|(maxX - 200, maxY)|
-|(190, 720)|(200, maxY)|
+![Transformation](./misc/Transformer_Perspective_Warped_img.JPG)
 
-Using `cv2.getPerspectiveTransform`, a transformation matrix was calculated, and an inverse transformation matrix was also calculated to map the points back to the original space (`In [5]`). The result of the transformation on a test image is the following:
+The transformation matrix and the inverse transformation matrix was stored using `pickle` to be used on the main notebook [Advanced Lane Lines notebook](Advance_Lane_Find.ipynb). The following picture shows the binary images results after the perspective transformation:
 
-![Transformation](images/transformation.png)
-
-The transformation matrix and the inverse transformation matrix was stored using `pickle` to be used on the main notebook [Advanced Lane Lines notebook](Advance%20Lane%20Lines.ipynb). The following picture shows the binary images results after the perspective transformation:
-
-![Binary images transformed](images/binarytransformed.png)
+![Binary images transformed](./misc/Perspective_Transform_After_Binarization.JPG)
 
 #### 4. Describe how (and identify where in your code) you identified lane-line pixels and fit their positions with a polynomial?
 
