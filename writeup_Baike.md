@@ -109,6 +109,7 @@ It is a challange work to use previous information for performing basically the 
 
 #### 5. Describe how (and identify where in your code) you calculated the radius of curvature of the lane and the position of the vehicle on the center.
 
+The code used to calculate this could be found staring from cell [11] to cell [14] [Advanced Lane Lines notebook](Advance_Lane_Find.ipynb)
 To calculate the curvature. The formula is the following:
 
 ```
