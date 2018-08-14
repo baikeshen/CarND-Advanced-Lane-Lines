@@ -54,22 +54,20 @@ I explore several combinations of sobel gradient thresholds and color channel th
 ![Thresholds imgae1](./misc/Threshold_Image_1.JPG)
 ![Thresholds imgae1](./misc/Threshold_Image_2.JPG)
 
-After the color transformation had been done, it was time for gradients. The following gradients were calculated:
+Ultimately, I chosed the following :
 
-- Sobel X and Sobel Y: `In [10]` and `In [11]`
-- Magnitude : `In [13]`
-- Gradient direction : `In [14]`
-- Combination of all the above (Sobel X and Sobel Y) or (Magnitude and Gradient): `In [16]`
+- Sobel X and Sobel Y: 
+- Magnitude : 
+- Gradient direction 
+- S-channel of HLS
+- V-channel of HSV
+- Combination of all the above (Sobel X and Sobel Y) or (Magnitude and Gradient)
 
-After a few back-and-forward exploration with thresholds, the following picture will show the different gradients on some test images side-by-side:
+The full combination of these gradients leads to a 'noisy' image as shown in below:
 
-![Side by Side gradients](images/sidebyside.png)
+![Stack_Binarized imgae](./misc/Original_Binarized_Stacked_Img.JPG)
 
-The full combination of these gradients leads to a "noisy" binary image. That is why on the main notebook [Advanced Lane Lines notebook](Advance%20Lane%20Lines.ipynb). Only the combination of Sobel X and Sobel Y was used to continue with the pipeline. The following image shows the binary image obtained with that combination on the test images:
-
-![Final gradient calculation](images/finalgradient.png)
-
-On the [Advanced Lane Lines notebook](Advance%20Lane%20Lines.ipynb), the code used to calculate this images is from `In [7]` to `In [13]`.
+On the [Advance_Lane_Find notebook](Advance_Lane_Find.ipynb), all the code could be found from the cell just below `Step 2： Use color transforms, gradients, etc, to create a thresholded binary image`
 
 #### 3. Describe how (and identify where in your code) you performed a perspective transform and provided an example of a transformed image.
 
