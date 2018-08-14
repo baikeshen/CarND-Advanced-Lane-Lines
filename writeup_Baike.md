@@ -29,7 +29,7 @@ The camera calibration code could be found on the first code shell [Advance_Lane
 
 The image below depicts the rsults of applying `cv2.undistort`, using the calibration and distortion coefficients, to one of the chessboar images:
 
-![Camera calibration](./misc/Camera_Calibration.jpeg)
+![Camera calibration](./misc/Camera_Calibration.JPG)
 
 The camera calibration and distortion coefficients are stored on file [Camera calibration coefficients.p](camera_calibrate_coefficients.p) using `pickle` to be used on the main [notebook](Advance_Lane_Find.ipynb)
 
