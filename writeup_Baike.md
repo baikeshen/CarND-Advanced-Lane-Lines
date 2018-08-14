@@ -103,15 +103,21 @@ The imgae below depicts the histogram generated in the cell [75] on the main not
 
 ![Polynomial fit](./misc/Poly_Fit_Histogram.JPG)
 
+It is a challange work to use previous information for performing basically the same task, but alleviates much difficulty of the search process by leveraging a previous fit (from a previous video frame, for example) and only searching for lane pixels within a certain range of that fit. The image below demonstrates this - the green shaded area is the range from the previous fit, and the yellow lines and red and blue pixels are from the current image:
+
+![Polynomial previous_fit](./misc/Poly_Fit_using_Previous_info.JPG)
+
 #### 5. Describe how (and identify where in your code) you calculated the radius of curvature of the lane and the position of the vehicle on the center.
 
-On the step 4 a polynomial was calculated on the meters space to be used here to calculate the curvature. The formula is the following:
+To calculate the curvature. The formula is the following:
 
 ```
-((1 + (2*fit[0]*yRange*ym_per_pix + fit[1])**2)**1.5) / np.absolute(2*fit[0])
+# Calculate the new radii of curvature
+left_curverad = ((1 + (2*left_fit_cr[0]*y_eval*ym_per_pix + left_fit_cr[1])**2)**1.5) / np.absolute(2*left_fit_cr[0])
+right_curverad = ((1 + (2*right_fit_cr[0]*y_eval*ym_per_pix + right_fit_cr[1])**2)**1.5) / np.absolute(2*right_fit_cr[0])
 ```
 
-where `fit` is the the array containing the polynomial, `yRange` is the max Y value and `ym_per_pix` is the meter per pixel value.
+In this example, xx_fit_cr[0] is the first coefficient (the y-squared coefficient) of the second order polynomial fit, and XXX_fit_cr[1] is the second (y) coefficient. y_eval the y position within the image upon which the curvature calculation is based (the bottom-most y - the position of the car in the image - was chosen). ym_per_pix is the factor used for converting from pixels to meters. This conversion was also used to generate a new fit with coefficients in terms of meters.
 
 To find the vehicle position on the center:
 
@@ -119,7 +125,13 @@ To find the vehicle position on the center:
 - Calculate the vehicle center transforming the center of the image from pixels to meters.
 - The sign between the distance between the lane center and the vehicle center gives if the vehicle is on to the left or the right.
 
-The code used to calculate this could be found at `In [20]`.
+The code used to calculate this is show as below:
+
+```
+lane_center = (left_fitx + right_fitx) / 2
+lane_offset = (car_position - lane_center[-1]) * xm_per_pix
+print("Distance from Center of Lane {:.3f} m".format(lane_offset))
+```
 
 #### 6. Provide an example image of your result plotted back down onto the road such that the lane area is identified clearly.
 
