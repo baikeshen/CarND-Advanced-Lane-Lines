@@ -99,7 +99,7 @@ The codes, which are used to identify lane-line, sit in the cell [75] on the mai
 
 ![Fit_Lane_Line](./misc/Fit_Lane-line_Process.JPG)
 
-The imgae below depicts the histogram generated in the cell [75] on the main notebook [Advanced Lane Lines notebook], the resulting base points for the left and right lanes - the two peaks nearst the center - are clearly visible:
+The imgae below depicts the histogram generated in the cell [9] on the main notebook [Advanced Lane Lines notebook], the resulting base points for the left and right lanes - the two peaks nearst the center - are clearly visible:
 
 ![Polynomial fit](./misc/Poly_Fit_Histogram.JPG)
 
