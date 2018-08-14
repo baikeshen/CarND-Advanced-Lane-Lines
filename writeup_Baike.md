@@ -152,11 +152,11 @@ The project video was processed and the results at [video_output](./misc/project
 
 At the beginning my pipeline did not perform well on the original project video due to lighting conditions, shadows, discoloration,  etc. 
 
-It could become an issue for my pipeline Under snow or in a situation where, for example, a bright white car were driving among dull white lane lines. 
+It could become an issue for my pipeline under snow or in a situation where, for example, a bright white car were driving among dull white lane lines. 
 
 The following possible approaches could make my alorithm more robust:
 
 - including dynamic thresholding;
-- More information could be use from frame to frame to improve the robustness of the process.
-- designating a confidence level for fits and rejecting new fits that deviate beyond a certain amount
+- More information could be use from frame to frame to improve the robustness of the process;
+- designating a confidence level for fits and rejecting new fits that deviate beyond a certain amount.
 
