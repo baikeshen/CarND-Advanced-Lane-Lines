@@ -84,9 +84,8 @@ dst = np.float32([[corners[0][0] + offset, corners[0][1]],
                       [corners[3][0] - offset, corners[3][1]]])   
 
 ```
-I had considered programmatically determining source and destination points, but I felt that I would get better results carefully selecting points using one of the `straight_lines` test images for reference and assuming that the camera position will remain constant and that the road in the videos will remain relatively flat. The image below demonstrates the results of the perspective transform: 
 
- Using `cv2.getPerspectiveTransform`, a transformation matrix was calculated, and an inverse transformation matrix was also calculated to map the points back to the original space . Four points where selected on the first image as the source of the perspective transformation. Those points are highlighted on the following image, after transformation, the result of the transformation on a test image is the following as well:
+Using `cv2.getPerspectiveTransform`, a transformation matrix was calculated, and an inverse transformation matrix was also calculated to map the points back to the original space . Four points where selected on the first image as the source of the perspective transformation. Those points are highlighted on the following image, after transformation, the result of the transformation on a test image is the following as well:
 
 ![Transformation](./misc/Transformer_Perspective_Warped_img.JPG)
 
@@ -96,9 +95,13 @@ The transformation matrix and the inverse transformation matrix was stored using
 
 #### 4. Describe how (and identify where in your code) you identified lane-line pixels and fit their positions with a polynomial?
 
-The line detection code could be found at `In [17]` of the [Advanced Lane Lines notebook](Advance%20Lane%20Lines.ipynb). The algorithm calculates the histogram on the X axis. Finds the picks on the right and left side of the image, and collect the non-zero points contained on those windows. When all the points are collected, a polynomial fit is used (using `np.polyfit`) to find the line model. On the same code, another polynomial fit is done on the same points transforming pixels to meters to be used later on the curvature calculation. The following picture shows the points found on each window, the windows and the polynomials:
+The codes, which are used to identify lane-line, sit in the cell [75] on the main notebook [Advanced Lane Lines notebook](Advance_Lane_Find.ipynb). Within this cell all the functions are clearly labeled.The first of these computes a histogram of the bottom half of the image and finds the bottom-most x position (or "base") of the left and right lane lines. Originally these locations were identified from the local maxima of the left and right halves of the histogram, but in my final implementation I changed these to quarters of the histogram just left and right of the midpoint. This helped to reject lines from adjacent lanes. The function then identifies ten windows from which to identify lane pixels, each one centered on the midpoint of the pixels from the window below. This effectively "follows" the lane lines up to the top of the binary image, and speeds processing by only searching for activated pixels over a small portion of the image. Pixels belonging to each lane line are identified and the Numpy polyfit() method fits a second order polynomial to each set of pixels. The image below demonstrates how this process works:
 
-![Polynomial fit](images/polyfit.png)
+![Fit_Lane_Line](./misc/Fit_Lane-line_Process.JPG)
+
+The imgae below depicts the histogram generated in the cell [75] on the main notebook [Advanced Lane Lines notebook], the resulting base points for the left and right lanes - the two peaks nearst the center - are clearly visible:
+
+![Polynomial fit](./misc/Poly_Fit_Histogram.JPG)
 
 #### 5. Describe how (and identify where in your code) you calculated the radius of curvature of the lane and the position of the vehicle on the center.
 
